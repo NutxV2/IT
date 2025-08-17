@@ -134,15 +134,15 @@ a {
 
 .landing {
   width: 70%;
-  margin: 11rem auto;
+  margin: 18rem auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 10rem;
+  gap: 5rem;
 }
 
 .landing-logo img {
-  width: 350px;
+  width: 400px;
   animation: bounce 2s infinite ease-in-out;
 }
 
