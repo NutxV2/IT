@@ -1,0 +1,536 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Michroma", sans-serif;
+  transition: all 0.3s ease;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+#snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* ไม่ขัดกับการคลิกเนื้อหา */
+  z-index: 0;
+}
+canvas {
+    display: block;
+}
+body {
+  background-image: radial-gradient(
+    circle at center bottom,
+    rgb(2, 0, 30) 10%,
+    #000000 90%
+  );
+}
+
+li {
+  list-style: none;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo img {
+  width: 50px;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+.nav-wrapper {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 1rem;
+  background: linear-gradient(
+    270deg,
+    #01c8ff8a,
+    #00ff9d8f,
+    #ff00c898,
+    #01c8ff8e
+  );
+  background-size: 600% 600%;
+  margin: 1rem auto;
+  border-radius: 2rem;
+  padding: 0.5rem 2rem;
+  z-index: 1000;
+  backdrop-filter: blur(10px); /* ทำให้ดูเป็น glass */
+  -webkit-backdrop-filter: blur(10px); /* รองรับ Safari */
+  animation: gradientMove 4s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.nav-container {
+  align-items: center;
+  display: flex;
+}
+
+.nav-container ul {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-container ul li a:hover {
+  color: #00e1ff;
+}
+
+.landing-header h1 {
+  text-transform: uppercase;
+  font-size: 100px;
+  background: linear-gradient(
+    270deg,
+    #05d8ca,
+    #f8f8f8,
+    #05d8ca
+  ); /* ทำซ้ำเพื่อให้วน */
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5rem;
+  animation: fadeIn 2s ease-in-out forwards, gradient-text 3s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px); /* ค่อยๆ ขึ้นมาจากด้านล่าง */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes gradient-text {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.landing {
+  width: 70%;
+  margin: 11rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10rem;
+}
+
+.landing-logo img {
+  width: 350px;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0); /* อยู่ตำแหน่งปกติ */
+  }
+  50% {
+    transform: translateY(-30px); /* เด้งขึ้น */
+  }
+}
+
+.description {
+  margin-top: 1rem;
+  color: #fff;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.hilight {
+  color: #00e1ff;
+}
+
+.btn-start {
+  height: 50px;
+  margin: 7rem auto;
+  width: 150px;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #00f7ffe1;
+  border-radius: 50px;
+  cursor: pointer;
+  animation: fadeIn 2s ease-in-out forwards, bounce 2s infinite ease-in-out;
+}
+.btn-start:hover {
+  transform: scale(1.1);
+  background-color: #00f7ff;
+  box-shadow: 0 6px 15px rgba(0, 247, 255, 0.7);
+}
+
+.detail {
+  padding: 6rem 2rem; /* เว้นพื้นที่ด้านบนล่าง */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* จัดข้อความให้อยู่กลาง */
+}
+
+.detail-jobs:hover {
+  transform: scale(1.1);
+  background: rgba(42, 87, 138, 0.877); /* ฟ้าอ่อนโปร่งใส */
+}
+
+.detail-header h1 {
+  color: #00e1ff;
+  text-transform: uppercase; /* พิมพ์ใหญ่ทั้งหมด */
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.detail-description {
+  letter-spacing: 0.2rem;
+  font-size: 0.8rem;
+  color: #fff;
+}
+.detail-card {
+  flex-wrap: wrap;
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 คอลัมน์เท่ากัน */
+  gap: 2rem; /* ระยะห่างระหว่าง card */
+  justify-items: center; /* จัด card กลางคอลัมน์ */
+  border-radius: 12px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-jobs {
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: center;
+  height: 400px;
+  width: 550px;
+  border-radius: 12px;
+  background: rgba(42, 87, 138, 0.308);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.detail-svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    rgba(0, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.5),
+    rgba(0, 255, 255, 0.2)
+  );
+  height: 60px;
+  width: 60px;
+  border-radius: 12px;
+  background-size: 600% 600%;
+  animation: gradientMove 4s ease infinite;
+}
+
+.detail-jobs svg {
+  fill: #00e1ff;
+  width: 80%;
+  height: 80%;
+}
+
+.card-header {
+  height: 30px;
+  width: 70%;
+  border-radius: 50px;
+  color: #fff;
+  background: rgba(42, 87, 138, 0.329); /* ฟ้าอ่อนโปร่งใส */
+  backdrop-filter: blur(10px); /* ทำให้ดูเป็น glass */
+  -webkit-backdrop-filter: blur(10px); /* รองรับ Safari */
+}
+
+.card-description {
+  margin-top: 1.5rem;
+  color: #fff;
+  text-align: left; /* บังคับชิดซ้าย */
+}
+
+.salary {
+  height: 30px;
+  border-radius: 12px;
+  width: 30%;
+  background-color: #05b88b96;
+  margin-top: 1.5rem;
+  color: #00e1ff;
+  text-align: left;
+  justify-content: center;
+  display: flex;
+  text-transform: uppercase;
+}
+.level {
+  margin-top: 1.5rem;
+  text-align: left;
+  color: #00ff2a;
+}
+
+.level-senoir {
+  margin-top: 1.5rem;
+  text-align: left;
+  color: #bbff00;
+}
+
+.language {
+  width: 100%;
+  margin-top: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.language h1 {
+  color: #00e1ff;
+  text-transform: uppercase; /* พิมพ์ใหญ่ทั้งหมด */
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.language-description {
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.language-layer-blox {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.language-header {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.language-blox {
+  margin: 1rem 8rem;
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background: rgba(42, 87, 138, 0.329);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.language-blox:hover {
+  transform: scale(1.1);
+  background: rgba(42, 87, 138, 0.63);
+}
+
+.language-blox img {
+  width: 300px;
+}
+
+.header-language {
+  width: 60%;
+  text-align: center;
+  background: rgba(42, 87, 138, 0.329); /* ฟ้าอ่อนโปร่งใส */
+  border-radius: 12px;
+}
+
+.description-blox {
+  height: 200px;
+  text-align: left;
+  background: rgba(42, 87, 138, 0.329); /* ฟ้าอ่อนโปร่งใส */
+  color: #ffffff; /* เปลี่ยนสีให้เห็นบนพื้นหลังขาว */
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 12px;
+}
+
+/* ----------- */
+.language-html-layer-blox {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.language-html-blox {
+  margin: 1rem 8rem;
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background: #e34f2679;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.header-html-language {
+  width: 60%;
+  text-align: center;
+  background: #e34f2679;
+  border-radius: 12px;
+}
+.header-html-language h1 {
+  color: #e34f26;
+}
+
+.description-html-blox {
+  height: 200px;
+  text-align: left;
+  background: #e34f2679;
+  color: #ffffff; /* เปลี่ยนสีให้เห็นบนพื้นหลังขาว */
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 12px;
+}
+
+.language-html-blox img {
+  width: 300px;
+}
+
+.language-html-blox:hover {
+  transform: scale(1.1);
+  background-color: #e34f26bb;
+}
+
+/* ------------- */
+
+.language-css-layer-blox {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.language-css-blox {
+  margin: 1rem 8rem;
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background: #01b9e75b;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.header-css-language {
+  width: 60%;
+  text-align: center;
+  background: #01b9e74b;
+  border-radius: 12px;
+}
+.header-css-language h1 {
+  color: #00ffbf;
+}
+
+.description-css-blox {
+  height: 200px;
+  text-align: left;
+  background: #01b9e779;
+  color: #ffffff;
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 12px;
+}
+
+.language-css-blox img {
+  width: 300px;
+}
+
+.language-css-blox:hover {
+  transform: scale(1.1);
+  background: #01b9e7b0;
+}
+/* ------------- */
+
+.language-js-layer-blox {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.language-js-blox {
+  margin: 1rem 8rem;
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background: #fbff0079;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.header-js-language {
+  width: 60%;
+  text-align: center;
+  background: #fbff0044;
+  border-radius: 12px;
+}
+.header-js-language h1 {
+  color: #fbff00;
+}
+
+.description-js-blox {
+  height: 200px;
+  text-align: left;
+  background: #fbff0049;
+  color: #ffffff;
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 12px;
+}
+
+.language-js-blox img {
+  width: 300px;
+}
+
+.language-js-blox:hover {
+  transform: scale(1.1);
+  background: #fbff00ad;
+}
+
+
+.side-footer {
+  color: #fff;
+  height: 50px;
+  margin-top: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    background: linear-gradient(
+    270deg,
+    #01c8ff8a,
+    #00ff9d8f,
+    #ff00c898,
+    #01c8ff8e
+  );
+  background-size: 600% 600%;
+  animation: gradientMove 4s ease infinite;
+}
